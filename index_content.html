@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			window.onload = function() {
+				//页面加载完毕后执行                                           
+				var pageUrl = window.location.href;
+				var weizhi = pageUrl.indexOf('=');
+				//如果有等号代表着传递参数了    具体看查看全文的跳转链接
+				if(weizhi >= 0) {
+					//根据传递来的值获取第k篇博客
+					var k = pageUrl.substr(weizhi + 1);
+					window.blogs = JSON.parse(window.localStorage.getItem("blogs"));
+					//将标题设置为查看正文的博客标题
+					$("#title").html(blogs[k]['title']);
+					$("#time").html(blogs[k]['time']);
+					$("#content").html(blogs[k]['content']);
+				} else {
+					alert("别乱来，传个参可否?");
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div class="col-md-12">
+				<div class="tc-ch">
+					<!--全文标题-->
+					<div class="tc-font">
+						<a id="title"></a>
+					</div>
+					<!--全文时间-->
+					<div class="tc-time">Time
+						<a id="time"></a>
+					</div>
+					<!--全文正文-->
+					<div class="tc-contents" id="content">
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
